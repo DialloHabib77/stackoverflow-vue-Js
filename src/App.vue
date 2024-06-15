@@ -1,5 +1,6 @@
 <template>
   <MainLayout/>
+  <router-view></router-view>
 </template>
 
 <script>
