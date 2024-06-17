@@ -1,14 +1,28 @@
 <template>
-  <MainLayout/>
-  <router-view></router-view>
+ <div>
+  <HomePage/>
+ </div>
+ <main >
+  <router-view/>
+ </main>
 </template>
 
 <script>
-import MainLayout from './components/MainLayout.vue'
+import HomePage from './components/pages/HomePage.vue';
 export default {
   name: 'App',
-  components: {
-    MainLayout
+  components:{
+    HomePage
   }
 }
 </script>
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+</style>
