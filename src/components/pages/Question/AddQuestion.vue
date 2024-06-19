@@ -5,9 +5,16 @@
      <!--ton formulaire doit etre ici-->
      <div class="bg-gray-100 flex items-center justify-center h-screen">
         <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md relative">
+            <div class="alert alert-danger mt-4" v-if="errors.length">
+              <ul class="mb-0">
+                <li v-for="(error, index) in errors" :key="index">
+                  {{ error }}
+                </li>
+              </ul>
+            </div>
             <button class="absolute top-2 right-2 text-gray-500 close-btn" @click="closeForm">✖</button>
                     <h2 class="text-2xl font-bold mb-6 text-gray-800 text-center">Formulaire</h2>
-            <form>
+            <form @submit.prevent="saveQuestion " novalidate>
             <div class="mb-4">
                 <label for="title" class="block text-gray-700 text-sm font-bold mb-2">Title</label>
                 <input type="text" id="title" name="title" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Enter title"  v-model="question.title">
@@ -53,7 +60,7 @@ export default {
           let formData = new FormData();
           formData.append('title', this.question.title);
           formData.append('body', this.question.body);
-          let url ='http://127.0.0.1:8000/api/students';
+          let url ='http://127.0.0.1:8000/api/question';
           await axios.post(url,formData).then((response)=>{
             console.log(response);
             if (response.status == 200) {
