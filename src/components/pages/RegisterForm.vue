@@ -79,6 +79,7 @@ export default {
 <style>
 .max-w-md {
   max-width: 24rem;
+  margin-left: 10%;
 }
 .content {
   margin-left: 35%;
