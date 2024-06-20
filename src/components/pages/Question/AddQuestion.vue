@@ -36,7 +36,7 @@ export default {
           body: '',
          
         },
-        errors: [],
+        error: [],
       }
       },
     methods: {
