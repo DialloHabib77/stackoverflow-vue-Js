@@ -4,11 +4,9 @@ import ThemeForm from "../components/pages/ThemeForm.vue";
 
 import UserList from "../components/pages/UserList.vue";
 import RegisterForm from "../components/pages/RegisterForm.vue";
-
 import QuestionList from "../components/pages/Question/QuestionList.vue";
 import AddQuestion from "../components/pages/Question/AddQuestion.vue";
 import EditQuestion from "../components/pages/Question/EditQuestion.vue";
-
 import AddAnswer from '../components/pages/answers/AddAnswer.vue';
 import AllQuestion from '../components/pages/answers/AllQuestion.vue'
 const routes = [
@@ -46,6 +44,7 @@ const routes = [
     name:'EditQuestion',
     path:'/question/edit/:id?',
     component:EditQuestion
+
 },
 {
     name:'AddAnswer',
@@ -57,6 +56,8 @@ const routes = [
     path:'/all_question',
     component:AllQuestion
 },
+
+
 
 ]
 const router=Router();
