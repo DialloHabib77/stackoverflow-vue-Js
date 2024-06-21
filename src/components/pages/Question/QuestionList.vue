@@ -1,15 +1,12 @@
 <template>
   <HomePage>
     <div style="margin-top: 5%">
-      <!-- Votre formulaire doit être ici -->
-      <div class="container mx-auto p-4" style="margin-left: 19%;margin-top: 5%">
+      <div class="container mx-auto p-4" style="margin-left: 19%; margin-top: 5%">
         <div class="bg-white shadow-md rounded-lg p-6">
           <div class="flex justify-between items-center border-b pb-4 mb-4">
             <h1 class="text-2xl font-bold text-gray-800 mx-4">Questions</h1>
             <router-link to="/add_question">
-              <button
-                class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700"
-              >
+              <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">
                 Ask Question
               </button>
             </router-link>
@@ -31,10 +28,7 @@
                 <td class="py-2">{{ question.title }}</td>
                 <td class="py-2">{{ question.body }}</td>
                 <td class="text-center">
-                  <button
-                    @click="deleteQuestion(question.id)"
-                    class="text-red-500 hover:text-red-700"
-                  >
+                  <button @click="deleteQuestion(question.id)" class="text-red-500 hover:text-red-700">
                     Supprimer
                   </button>
                 </td>
@@ -46,8 +40,8 @@
     </div>
   </HomePage>
 </template>
-  
-  <script>
+
+<script>
 import axios from "axios";
 import HomePage from "@/components/pages/HomePage.vue"; // Assurez-vous que le chemin est correct
 
@@ -58,32 +52,30 @@ export default {
   },
   data() {
     return {
-      questions: Array,
+      questions: [], // Correct initialization of the questions array
     };
   },
   created() {
-    this.getQuestions(); // Correction de l'orthographe
+    this.getQuestions();
   },
   methods: {
     async getQuestions() {
-      let url = "http://127.0.0.1:8000/api/question";
-      await axios
-        .get(url)
-        .then((response) => {
-          this.questions = response.data.questions;
-          console.log(this.questions);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+     
+      try {
+        let response = await axios.get('http://127.0.0.1:8000/api/question');
+        this.questions = response.data;
+        console.log(this.questions);
+      } catch (error) {
+        console.error(error);
+      }
     },
     async deleteQuestion(id) {
-      let url = `http://127.0.0.1:8000/api/question/${id}`;
+      const url = `http://127.0.0.1:8000/api/question/${id}`;
       try {
         const response = await axios.delete(url);
-        if (response.data.status === 200) {
+        if (response.status === 200) {
           alert(response.data.message);
-          this.getQuestions();
+          this.getQuestions(); // Refresh the list after deletion
         }
       } catch (error) {
         console.error(error);
@@ -95,10 +87,9 @@ export default {
   },
 };
 </script>
-  
-<style>
+
+<style scoped>
 .container {
   max-width: 80%;
 }
 </style>
-  
